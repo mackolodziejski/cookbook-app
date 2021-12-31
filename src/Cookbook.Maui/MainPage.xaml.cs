@@ -1,24 +1,14 @@
-﻿using Microsoft.Maui.Controls;
-using Microsoft.Maui.Essentials;
-using System;
+﻿using Cookbook.Infrastructure.DataAccess;
+using Microsoft.Maui.Controls;
 
 namespace Cookbook.Maui
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
-        public MainPage()
+        public MainPage(IDatabaseInitializer databaseInitializer)
         {
             InitializeComponent();
-        }
-
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-            CounterLabel.Text = $"Current count: {count}";
-
-            SemanticScreenReader.Announce(CounterLabel.Text);
+            databaseInitializer.Initialize();
         }
     }
 }
